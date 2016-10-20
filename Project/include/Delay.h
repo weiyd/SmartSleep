@@ -1,7 +1,7 @@
 /*
  * Delay.h
  *
- *  Created on: 2016Äê10ÔÂ19ÈÕ
+ *  Created on: 2016å¹´10æœˆ19æ—¥
  *      Author: AD
  */
 

@@ -11,7 +11,7 @@
 #include<msp430.h>
 void OA_INIT()
 {
-	 OA0CTL0 = OAPM_1 + OAADC1;    			// 运放工作模式
+	 OA0CTL0 = OAPM_1 + OAADC1;    	// 运放工作模式 输出到外部管脚和ADC的 A1 A3 A5
 	 OA0CTL1 = OAFC_4 + OAFBR_7;   	// 运放功能 4 正相比例放大  反馈电阻15倍
 
      OA1CTL0 |= OAPM_1 + OAADC1;

@@ -7,15 +7,15 @@
 int main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;
-	//ADC_INIT();
+	ADC_INIT();
 	//TIMER_INIT();
 	OA_INIT();
 	CA_INIT();
 	P5DIR |= 0x02;
+	__bis_SR_register(GIE);		// 使能全局中断
 	while (1)
 	{
-		//ADC12CTL0 |= ADC12SC;                   	// 开始采样
-		__bis_SR_register(LPM0_bits + GIE);						// 使能全局中断
+		ADC12CTL0 |= ADC12SC; 	// 开始采样
 	}
 }
 unsigned int result[512];
