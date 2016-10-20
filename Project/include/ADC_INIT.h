@@ -4,14 +4,14 @@
 #include <msp430.h>
 void ADC_INIT()
 {	
-	ADC12CTL0 &= ~ENC; 				// ½ûÓÃADC12 ¿ªÊ¼ÅäÖÃADC END¿ØÖÆ×Å²ÉÑù±£³ÖÔ´
+	ADC12CTL0 &= ~ENC; 				// é…ç½®ADCå‰éœ€è¦ ç¦ç”¨ADC
 
 	ADC12CTL0 = SHT0_2 | ADC12ON;  	// Sampling time, ADC12 on
 	ADC12CTL1 = SHP;              	// Use sampling timer
 	ADC12IE = 0x01;            		// Enable interrupt
-	ADC12MCTL0 |= 1;				//P6.0×÷ÎªADC12µÄ²ÉÑùÍ¨µÀ
-	P6SEL |= 0x01;					//P6.0×÷ÎªADC12µÄ²ÉÑùÍ¨µÀ
+	ADC12MCTL0 |= 1;				//P6.0ï¿½ï¿½ÎªADC12ï¿½Ä²ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
+	P6SEL |= 0x01;					//P6.0ï¿½ï¿½ÎªADC12ï¿½Ä²ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
 
-	ADC12CTL0 |= ENC;				//Æô¶¯ADC
+	ADC12CTL0 |= ENC;				//ï¿½ï¿½ï¿½ï¿½ADC
 }
 #endif

@@ -20,7 +20,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include include/subdir_vars.mk
 -include subdir_rules.mk
+-include include/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
