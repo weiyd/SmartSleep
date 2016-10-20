@@ -5,7 +5,7 @@
 #include "include/Delay.h"
 int main(void)
 {
-	WDTCTL = WDTPW | WDTHOLD;                 // Stop WDTfd
+	WDTCTL = WDTPW | WDTHOLD;                 // Stop WDT
 	ADC_INIT();
 	//TIMER_INIT();
 	OA_INIT();                          // P6.0 ADC option select
