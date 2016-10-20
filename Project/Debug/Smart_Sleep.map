@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.3.3                      
 ******************************************************************************
->> Linked Thu Oct 20 14:43:19 2016
+>> Linked Thu Oct 20 15:35:27 2016
 
 OUTPUT FILE NAME:   <Smart_Sleep.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 0000315a
+ENTRY POINT SYMBOL: "_c_int00"  address: 000031a2
 
 
 MEMORY CONFIGURATION
@@ -17,7 +17,7 @@ MEMORY CONFIGURATION
   INFOB                 00001000   00000080  00000000  00000080  RWIX
   INFOA                 00001080   00000080  00000000  00000080  RWIX
   RAM                   00001100   00002000  00000454  00001bac  RWIX
-  FLASH                 00003100   0000cec0  000000b0  0000ce10  RWIX
+  FLASH                 00003100   0000cec0  000000f4  0000cdcc  RWIX
   INT00                 0000ffc0   00000002  00000000  00000002  RWIX
   INT01                 0000ffc2   00000002  00000000  00000002  RWIX
   INT02                 0000ffc4   00000002  00000000  00000002  RWIX
@@ -50,7 +50,7 @@ MEMORY CONFIGURATION
   INT29                 0000fffa   00000002  00000002  00000000  RWIX
   INT30                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00010000  000001d4  0000fe2c  RWIX
+  FLASH2                00010000   00010000  000001d2  0000fe2e  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -78,18 +78,18 @@ section   page    origin      length       input sections
                   000030b4    0000004c     --HOLE--
 
 .text:_isr 
-*          0    00003100    00000084     
-                  00003100    00000040     main.obj (.text:_isr:ADC12_ISR)
-                  00003140    0000001a     main.obj (.text:_isr:Timer_A)
-                  0000315a    0000001a     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
-                  00003174    00000010     main.obj (.text:_isr:Comp_A_ISR)
+*          0    00003100    000000c8     
+                  00003100    00000088     main.obj (.text:_isr:ADC12_ISR)
+                  00003188    0000001a     main.obj (.text:_isr:Timer_A)
+                  000031a2    0000001a     rts430x_lc_rd_eabi.lib : boot.obj (.text:_isr:_c_int00_noexit)
+                  000031bc    0000000c     main.obj (.text:_isr:Comp_A_ISR)
 
-.cinit     0    00003184    0000002c     
-                  00003184    0000000c     (__TI_handler_table)
-                  00003190    00000009     (.cinit..data.load) [load image, compression = rle]
-                  00003199    00000001     --HOLE-- [fill = 0]
-                  0000319a    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  000031a0    00000010     (__TI_cinit_table)
+.cinit     0    000031c8    0000002c     
+                  000031c8    0000000c     (__TI_handler_table)
+                  000031d4    00000009     (.cinit..data.load) [load image, compression = rle]
+                  000031dd    00000001     --HOLE-- [fill = 0]
+                  000031de    00000006     (.cinit..bss.load) [load image, compression = zero_init]
+                  000031e4    00000010     (__TI_cinit_table)
 
 DAC12      0    0000ffdc    00000002     
                   0000ffdc    00000002     rts430x_lc_rd_eabi.lib : int14.obj (.int14)
@@ -149,32 +149,32 @@ NMI        0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    000001d4     
+.text      0    00010000    000001d2     
                   00010000    0000006e     rts430x_lc_rd_eabi.lib : autoinit.obj (.text:_auto_init_hold_wdt)
                   0001006e    00000062                            : copy_decompress_rle.obj (.text:__TI_decompress_rle_core)
                   000100d0    00000044     main.obj (.text:OA_INIT)
                   00010114    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
                   00010138    00000024     main.obj (.text:main)
-                  0001015c    00000022     main.obj (.text:ADC_INIT)
-                  0001017e    0000001c     main.obj (.text:CA_INIT)
-                  0001019a    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
-                  000101ae    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  000101c0    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
-                  000101c6    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
-                  000101cc    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  000101d0    00000004                            : exit.obj (.text:abort)
+                  0001015c    00000020     main.obj (.text:ADC_INIT)
+                  0001017c    0000001c     main.obj (.text:CA_INIT)
+                  00010198    00000014     rts430x_lc_rd_eabi.lib : memcpy.obj (.text:memcpy)
+                  000101ac    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  000101be    00000006                            : isr_trap.obj (.text:__TI_ISR_TRAP)
+                  000101c4    00000006                            : copy_decompress_rle.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  000101ca    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  000101ce    00000004                            : exit.obj (.text:abort)
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 000031a0 records: 2, size/record: 8, table size: 16
-	.data: load addr=00003190, load size=00000009 bytes, run addr=00001500, run size=00000004 bytes, compression=rle
-	.bss: load addr=0000319a, load size=00000006 bytes, run addr=00001100, run size=00000400 bytes, compression=zero_init
+__TI_cinit_table @ 000031e4 records: 2, size/record: 8, table size: 16
+	.data: load addr=000031d4, load size=00000009 bytes, run addr=00001500, run size=00000004 bytes, compression=rle
+	.bss: load addr=000031de, load size=00000006 bytes, run addr=00001100, run size=00000400 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00003184 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 000031c8 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_zero_init
 	index: 1, handler: __TI_decompress_rle24
 	index: 2, handler: __TI_decompress_none
@@ -227,12 +227,12 @@ address    name
 00000046   BTCNT12
 00000047   BTCNT2
 00000040   BTCTL
-000101d0   C$$EXIT
+000101ce   C$$EXIT
 00000059   CACTL1
 0000005a   CACTL2
 0000005b   CAPD
-0001017e   CA_INIT
-00003174   Comp_A_ISR
+0001017c   CA_INIT
+000031bc   Comp_A_ISR
 000001c0   DAC12_0CTL
 000001c8   DAC12_0DAT
 000001c2   DAC12_1CTL
@@ -406,7 +406,7 @@ address    name
 00000180   TBCTL
 0000011e   TBIV
 00000190   TBR
-00003140   Timer_A
+00003188   Timer_A
 0000007c   U1BR0
 0000007d   U1BR1
 00000078   U1CTL
@@ -439,16 +439,16 @@ address    name
 00000120   WDTCTL
 00003100   __STACK_END
 00000050   __STACK_SIZE
-000031a0   __TI_CINIT_Base
-000031b0   __TI_CINIT_Limit
-00003184   __TI_Handler_Table_Base
-00003190   __TI_Handler_Table_Limit
+000031e4   __TI_CINIT_Base
+000031f4   __TI_CINIT_Limit
+000031c8   __TI_Handler_Table_Base
+000031d4   __TI_Handler_Table_Limit
 UNDEFED    __TI_INITARRAY_Base
 UNDEFED    __TI_INITARRAY_Limit
-000101c0   __TI_ISR_TRAP
+000101be   __TI_ISR_TRAP
 00000001   __TI_args_main
-000101ae   __TI_decompress_none
-000101c6   __TI_decompress_rle24
+000101ac   __TI_decompress_none
+000101c4   __TI_decompress_rle24
 00000001   __TI_exit
 0000ffdc   __TI_int14
 0000ffde   __TI_int15
@@ -471,16 +471,16 @@ UNDEFED    __TI_INITARRAY_Limit
 ffffffff   __binit__
 ffffffff   __c_args__
 00010000   _auto_init_hold_wdt
-0000315a   _c_int00
-0000315a   _c_int00_noexit
+000031a2   _c_int00
+000031a2   _c_int00_noexit
 0000fffe   _reset_vector
 000030b0   _stack
-000101cc   _system_pre_init
-000101d0   abort
+000101ca   _system_pre_init
+000101ce   abort
 ffffffff   binit
 00001502   i
 00010138   main
-0001019a   memcpy
+00010198   memcpy
 00001500   pos
 00001100   result
 
@@ -744,14 +744,14 @@ address    name
 000030b0   _stack
 00003100   ADC12_ISR
 00003100   __STACK_END
-00003140   Timer_A
-0000315a   _c_int00
-0000315a   _c_int00_noexit
-00003174   Comp_A_ISR
-00003184   __TI_Handler_Table_Base
-00003190   __TI_Handler_Table_Limit
-000031a0   __TI_CINIT_Base
-000031b0   __TI_CINIT_Limit
+00003188   Timer_A
+000031a2   _c_int00
+000031a2   _c_int00_noexit
+000031bc   Comp_A_ISR
+000031c8   __TI_Handler_Table_Base
+000031d4   __TI_Handler_Table_Limit
+000031e4   __TI_CINIT_Base
+000031f4   __TI_CINIT_Limit
 0000ffdc   __TI_int14
 0000ffde   __TI_int15
 0000ffe0   __TI_int16
@@ -775,14 +775,14 @@ address    name
 00010114   __TI_zero_init
 00010138   main
 0001015c   ADC_INIT
-0001017e   CA_INIT
-0001019a   memcpy
-000101ae   __TI_decompress_none
-000101c0   __TI_ISR_TRAP
-000101c6   __TI_decompress_rle24
-000101cc   _system_pre_init
-000101d0   C$$EXIT
-000101d0   abort
+0001017c   CA_INIT
+00010198   memcpy
+000101ac   __TI_decompress_none
+000101be   __TI_ISR_TRAP
+000101c4   __TI_decompress_rle24
+000101ca   _system_pre_init
+000101ce   C$$EXIT
+000101ce   abort
 ffffffff   __binit__
 ffffffff   __c_args__
 ffffffff   binit

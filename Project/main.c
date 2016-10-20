@@ -12,10 +12,11 @@ int main(void)
 	OA_INIT();
 	CA_INIT();
 	P5DIR |= 0x02;
-	__bis_SR_register(GIE);		// 使能全局中断
-	while (1)
+	while(1)
 	{
 		ADC12CTL0 |= ADC12SC; 	// 开始采样
+		__bis_SR_register(LPM0_bits+GIE);		// 使能全局中断
+
 	}
 }
 unsigned int result[512];
@@ -23,21 +24,31 @@ int pos=0;
 #pragma vector = ADC12_VECTOR
 __interrupt void ADC12_ISR(void)
 {
-	//if (ADC12MEM0 >= 0xcff)                   // If ADC12MEM = A0 > 0.5AVcc
-	//    P5OUT |= 0x02;                          // Set P5.1
-	//  else
-	//    P5OUT &= ~0x02;                         // Otherwise reset P5.1
-	//
-	//  __bic_SR_register_on_exit(LPM0_bits);     // Exit LPM0
 	result[pos]=ADC12MEM0;
 	if(result[pos]>0xaff)
-		 P5OUT |= 0x02;
+	{
+		 P5OUT &= ~0x02;
+		 OA0CTL1 &= ~0x05;
+		 OA1CTL1 &= ~0x05;
+		 OA2CTL1 &= ~0x05;
+		 OA0CTL1 |= OAFBR_1;
+		 OA1CTL1 |= OAFBR_1;
+		 OA2CTL1 |= OAFBR_1;
+	}
 	else
-		P5OUT &= ~0x02;
+	{
+		P5OUT |= 0x02;
+		OA0CTL1 &= ~0x05;
+		OA1CTL1 &= ~0x05;
+		OA2CTL1 &= ~0x05;
+		OA0CTL1 |= OAFBR_4;
+		OA1CTL1 |= OAFBR_4;
+		OA2CTL1 |= OAFBR_4;
+	}
 	pos++;
 	if(pos==512)
 		pos=0;
-	//__bic_SR_register_on_exit(LPM0_bits);
+	__bic_SR_register_on_exit(LPM0_bits);
 }
 int i=0;
 #pragma vector=TIMERA0_VECTOR
@@ -55,9 +66,8 @@ __interrupt void Timer_A (void)
 #pragma vector=COMPARATORA_VECTOR
 __interrupt void Comp_A_ISR (void)
 {
-  CACTL1 ^= CAIES;                          // 改变比较器的中断触发方式 上升沿下降沿轮转
-  P5OUT ^= 0x02;                            // 外部LED 输入电压高与0.55v点亮,反之,熄灭
-  __bic_SR_register_on_exit(LPM0_bits);
+	CACTL1 ^= CAIES;                          // 改变比较器的中断触发方式 上升沿下降沿轮转
+	__bic_SR_register_on_exit(LPM0_bits);
 }
 
 
