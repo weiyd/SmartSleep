@@ -1,7 +1,7 @@
 /*
  * OA.h
  *
- *  Created on: 2016��10��18��
+ *  Created on: 2016年10月18日
  *      Author: AD
  */
 
@@ -11,12 +11,15 @@
 #include<msp430.h>
 void OA_INIT()
 {
-	 OA0CTL0 = OAPM_3 ;    			// �����˷�ģʽ
-	 OA0CTL1 = OAFC_4 + OAFBR_1;   	// ��������Ŵ� ����Ϊ1/4
-     OA1CTL0 |= OAPM_3 ;
+	 OA0CTL0 = OAPM_1 + OAADC1;    			// 运放工作模式
+	 OA0CTL1 = OAFC_4 + OAFBR_7;   	// 运放功能 4 正相比例放大  反馈电阻15倍
+
+     OA1CTL0 |= OAPM_1 + OAADC1;
      OA1CTL1 |= OAFC_4 + OAFBR_7;
-	 OA2CTL0 |= OAPM_3;
+
+	 OA2CTL0 |= OAPM_1+ OAADC1;
 	 OA2CTL1 |= OAFC_4 + OAFBR_7;
+
 	 P6SEL |= 0x01;					//6.0 OA0I0
 	 P6SEL |= 0x02;					//6.1 OA0O
 	 P6SEL |= 0x08;					//6.3 OA1O

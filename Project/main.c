@@ -9,13 +9,13 @@ int main(void)
 	WDTCTL = WDTPW | WDTHOLD;
 	//ADC_INIT();
 	//TIMER_INIT();
-	//OA_INIT();
+	OA_INIT();
 	CA_INIT();
 	P5DIR |= 0x02;
 	while (1)
 	{
 		//ADC12CTL0 |= ADC12SC;                   	// 开始采样
-		__bis_SR_register(GIE);						// 使能全局中断
+		__bis_SR_register(LPM0_bits + GIE);						// 使能全局中断
 	}
 }
 unsigned int result[512];
@@ -57,6 +57,7 @@ __interrupt void Comp_A_ISR (void)
 {
   CACTL1 ^= CAIES;                          // 改变比较器的中断触发方式 上升沿下降沿轮转
   P5OUT ^= 0x02;                            // 外部LED 输入电压高与0.55v点亮,反之,熄灭
+  __bic_SR_register_on_exit(LPM0_bits);
 }
 
 
